@@ -10,6 +10,8 @@ import userRoutes from "./routes/user.route";
 import sessionRoutes from "./routes/session.route";
 import { APP_ORIGIN, NODE_ENV, PORT } from "./constants/env";
 
+import taskRoutes from "./routes/task.route";
+
 const app = express();
 
 // add middleware
@@ -33,8 +35,14 @@ app.get("/", (_, res) => {
 // auth routes
 app.use("/auth", authRoutes);
 
+app.get("/login", (req, res) => {
+  res.json({ message: "Login successful" });
+});
 // protected routes
 app.use("/user", authenticate, userRoutes);
+
+app.use("/api/tasks", authenticate, taskRoutes);
+
 app.use("/sessions", authenticate, sessionRoutes);
 
 // error handler
@@ -44,3 +52,6 @@ app.listen(PORT, async () => {
   console.log(`Server listening on port ${PORT} in ${NODE_ENV} environment`);
   await connectToDatabase();
 });
+
+
+export default app;

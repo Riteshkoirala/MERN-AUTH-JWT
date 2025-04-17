@@ -8,6 +8,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import { setNavigate } from "./lib/navigation";
+import TaskManager from "./pages/TaskManager";
 
 function App() {
   // set the navigate function on our API client for use in the axios error interceptor
@@ -18,6 +19,8 @@ function App() {
     <Routes>
       <Route path="/" element={<AppContainer />}>
         <Route index element={<Profile />} />
+        <Route path="/tasks" element={<TaskManager />} />
+
         <Route path="settings" element={<Settings />} />
       </Route>
       <Route path="/login" element={<Login />} />

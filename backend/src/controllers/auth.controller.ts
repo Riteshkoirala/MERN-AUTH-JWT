@@ -41,6 +41,7 @@ export const loginHandler = catchErrors(async (req, res) => {
     ...req.body,
     userAgent: req.headers["user-agent"],
   });
+  
   const { accessToken, refreshToken } = await loginUser(request);
 
   // set cookies
